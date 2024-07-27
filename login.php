@@ -6,7 +6,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = $_POST['password'];
 
     // Hardcoded credentials
-    $valid_username = 'admin';
+    $valid_username = 'owner';
     $valid_password = 'pass@123';
 
     if ($username == $valid_username && $password == $valid_password) {
@@ -78,9 +78,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <form action="login.php" method="post">
             <input type="text" name="username" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
-            <label>
+            <!-- <label>
                 <input type="checkbox" name="remember">Remember Me
-            </label></br>
+            </label></br> -->
             <button type="submit">Login</button>
         </form>
     </div>
