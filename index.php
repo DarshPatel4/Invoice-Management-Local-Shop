@@ -81,7 +81,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                 }
                 ?>
             </main>
-            
         </div>
     </div>
     <script src="script.js"></script>
