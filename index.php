@@ -43,7 +43,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                         <a href="javascript:void(0)" class="dropbtn"><i class="fas fa-users"></i> Customers <i class="fas fa-caret-down"></i></a>
                         <div class="dropdown-content">
                             <a href="index.php?page=customers">View Customers</a>
-                            <a href="index.php?page=add_customer">Add Customer</a>
+                            <a href="index.php?page=">Add Customer</a>
                         </div>
                     </li>
                     <li class="dropdown">
@@ -73,7 +73,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                 } elseif ($page == 'products' || $page == 'add_product') {
                     include 'products.php';
                 } elseif ($page == 'customers' || $page == 'add_customer') {
-                    include 'customers.php';
+                    include 'customer.php';
                 } elseif ($page == 'system_users' || $page == 'add_system_user') {
                     include 'system_users.php';
                 } else {
