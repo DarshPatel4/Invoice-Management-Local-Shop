@@ -14,6 +14,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Offline Store</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style1.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -68,10 +69,10 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 
                 if ($page == 'dashboard') {
                     include 'dashboard.php';
-                } elseif ($page == 'invoices' || $page == 'add_invoice') {
-                    include 'invoices.php';
-                } elseif ($page == 'products' || $page == 'add_product') {
-                    include 'products.php';
+                } elseif ($page == 'add_invoice') {
+                    include 'add_invoice.php';
+                } elseif ($page == 'add_product') {
+                    include 'add_product.php';
                 } elseif ($page == 'customers' || $page == 'add_customer') {
                     include 'customer.php';
                 } elseif ($page == 'system_users' || $page == 'add_system_user') {

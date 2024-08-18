@@ -16,3 +16,12 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+document.getElementById('addProduct').addEventListener('click', function () {
+    var productItem = document.querySelector('.product-item');
+    var newProduct = productItem.cloneNode(true);
+    newProduct.querySelectorAll('input').forEach(function(input) {
+        input.value = '';
+    });
+    document.getElementById('productList').appendChild(newProduct);
+});
