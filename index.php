@@ -29,7 +29,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                     <li class="dropdown">
                         <a href="javascript:void(0)" class="dropbtn"><i class="fas fa-file-invoice"></i> Invoices <i class="fas fa-caret-down"></i></a>
                         <div class="dropdown-content">
-                            <a href="index.php?page=invoices">View Invoices</a>
+                            <a href="index.php?page=view_invoices">View Invoices</a> <!-- Updated to match 'view_invoices' -->
                             <a href="index.php?page=add_invoice">Add Invoice</a>
                         </div>
                     </li>
@@ -44,7 +44,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                         <a href="javascript:void(0)" class="dropbtn"><i class="fas fa-users"></i> Customers <i class="fas fa-caret-down"></i></a>
                         <div class="dropdown-content">
                             <a href="index.php?page=customers">View Customers</a>
-                            <a href="index.php?page=">Add Customer</a>
+                            <a href="index.php?page=add_customer">Add Customer</a> <!-- Fixed missing page parameter -->
                         </div>
                     </li>
                     <li class="dropdown">
@@ -71,12 +71,20 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                     include 'dashboard.php';
                 } elseif ($page == 'add_invoice') {
                     include 'add_invoice.php';
+                } elseif ($page == 'view_invoices') {  // Changed to match the sidebar link
+                    include 'view_invoices.php';
                 } elseif ($page == 'add_product') {
                     include 'add_product.php';
-                } elseif ($page == 'customers' || $page == 'add_customer') {
+                } elseif ($page == 'products') { // Added condition to match 'products' page
+                    include 'products.php';
+                } elseif ($page == 'customers') {
                     include 'customer.php';
-                } elseif ($page == 'system_users' || $page == 'add_system_user') {
+                } elseif ($page == 'add_customer') {
+                    include 'add_customer.php';
+                } elseif ($page == 'system_users') {
                     include 'system_users.php';
+                } elseif ($page == 'add_system_user') {
+                    include 'add_system_user.php';
                 } else {
                     echo "<h1>Page not found</h1>";
                 }

@@ -1,5 +1,3 @@
-
-
 <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -26,21 +24,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Prepare and bind parameters
-    $name = $_POST['productName'];
-    $description = $_POST['description'];
-    $price = $_POST['price'];
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phonenumber = $_POST['phonenumber']; // Updated to match the column name
 
     // Validate inputs
-    if (empty($name) || empty($description) || empty($price)) {
+    if (empty($name) || empty($email) || empty($phonenumber)) {
         echo "<div class='error-message'>All fields are required.</div>";
     } else {
-        $sql = "INSERT INTO products (name, description, price) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO customers (name, email, phonenumber) VALUES (?, ?, ?)";
 
         if ($stmt = $conn->prepare($sql)) {
-            $stmt->bind_param("ssd", $name, $description, $price); // "ssd" - string, string, double
+            $stmt->bind_param("sss", $name, $email, $phonenumber); // "sss" - string, string, string
 
             if ($stmt->execute()) {
-                echo "<div class='success-message'>New product added successfully!</div>";
+                echo "<div class='success-message'>New customer added successfully!</div>";
             } else {
                 echo "<div class='error-message'>Error: " . $stmt->error . "</div>";
             }
@@ -56,13 +54,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add New Product</title>
+    <title>Add New Customer</title>
     <link rel="stylesheet" href="style1.css">
     <style>
         .container1 {
@@ -86,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin-bottom: 5px;
         }
 
-        input[type="text"], textarea {
+        input[type="text"], input[type="email"] {
             width: 100%;
             padding: 8px;
             box-sizing: border-box;
@@ -109,26 +106,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         button:hover {
             background-color: #0056b3;
         }
+        
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+        
+        .success-message {
+            color: green;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
 
     <div class="container1">
-        <h2>Add New Product</h2>
+        <h2>Add New Customer</h2>
         <form method="post" action="">
             <div class="form-group">
-                <label for="productName">Product Name:</label>
-                <input type="text" id="productName" name="productName" required>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
             </div>
             <div class="form-group">
-                <label for="description">Description:</label>
-                <textarea id="description" name="description" required></textarea>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
             </div>
             <div class="form-group">
-                <label for="price">Price:</label>
-                <input type="text" id="price" name="price" required>
+                <label for="phonenumber">Phone Number:</label>
+                <input type="text" id="phonenumber" name="phonenumber" required>
             </div>
-            <button type="submit">Add Product</button>
+            <button type="submit">Add Customer</button>
         </form>
     </div>
 

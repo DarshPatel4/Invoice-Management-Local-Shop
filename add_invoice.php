@@ -38,7 +38,7 @@
             </div>
         </div>
 
-        <h4 class="mt-4">Customer Information</h4>
+        <h4 class="mt-4">The Offline Store</h4>
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
@@ -77,6 +77,7 @@
                 </div>
             </div>
         </div>
+        <br>
 
         <h4 class="mt-4">Product Information</h4>
         <div id="productList">
@@ -105,10 +106,11 @@
                         <input type="text" class="form-control" id="discount" name="discount[]">
                     </div>
                 </div>
+        <button type="button" class="btn btn-success m-3" id="addProduct"><i class="fas fa-plus"></i> Add Product</button>
+
             </div>
         </div>
 
-        <button type="button" class="btn btn-success mb-3" id="addProduct"><i class="fas fa-plus"></i> Add Product</button>
 
         <div class="form-group">
             <label for="additionalNotes">Additional Notes:</label>
@@ -118,10 +120,10 @@
         <h4 class="mt-4">Invoice Summary</h4>
         <div class="row">
             <div class="col-md-4">
-                <div class="form-group">
-                    <label for="subTotal">Sub Total:</label>
-                    <input type="text" class="form-control" id="subTotal" name="sub_total" readonly>
-                </div>
+            <div class="form-group">
+    <label for="subTotal">Sub Total:</label>
+    <input type="text" class="form-control" id="subTotal" name="sub_total" readonly>
+</div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
@@ -140,3 +142,50 @@
         <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Invoice</button>
     </form>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const productList = document.getElementById('productList');
+        const subTotalField = document.getElementById('subTotal');
+        const taxField = document.getElementById('tax');
+        const totalAmountField = document.getElementById('totalAmount');
+
+        // Function to calculate the subtotal
+        function calculateSubtotal() {
+            let subtotal = 0;
+            const productItems = productList.getElementsByClassName('product-item');
+
+            Array.from(productItems).forEach(function(item) {
+                const price = parseFloat(item.querySelector('[name="price[]"]').value) || 0;
+                const quantity = parseFloat(item.querySelector('[name="quantity[]"]').value) || 0;
+                const discount = parseFloat(item.querySelector('[name="discount[]"]').value) || 0;
+
+                subtotal += (price * quantity) - discount;
+            });
+
+            subTotalField.value = subtotal.toFixed(2); // Update the Sub Total field
+            calculateTotalAmount(); // Update the total amount
+        }
+
+        // Function to calculate the total amount
+        function calculateTotalAmount() {
+            const subtotal = parseFloat(subTotalField.value) || 0;
+            const tax = parseFloat(taxField.value) || 0;
+            const totalAmount = subtotal + tax;
+
+            totalAmountField.value = totalAmount.toFixed(2); // Update the Total Amount field
+        }
+
+        // Attach event listeners to price, quantity, discount, and tax fields
+        productList.addEventListener('input', function (e) {
+            if (e.target.name === 'price[]' || e.target.name === 'quantity[]' || e.target.name === 'discount[]') {
+                calculateSubtotal();
+            }
+        });
+
+        taxField.addEventListener('input', calculateTotalAmount); // Update total when tax changes
+
+        // Initial calculation on page load
+        calculateSubtotal();
+    });
+</script>
