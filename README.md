@@ -10,8 +10,9 @@ The Invoice Management System for Local Shop is a web-based application develope
 - 📈 **Sales Tracking:** Keep track of all sales and generate reports.
 - 📦 **Inventory Management:** Monitor stock levels.
 - 👥 **Customer Management:** Maintain a database of customers with their contact details and purchase history.
+- 🔄 **Select Products from Inventory or Add Manually:** Choose between adding products manually or selecting from the existing inventory.
 
-## Technologies we Going to Use
+## Technologies we are Using
 - 🌐 **Frontend:** HTML, CSS, JavaScript
 - ⚙️ **Backend:** PHP
 - 🗄️ **Database:** MySQL
@@ -42,7 +43,7 @@ The Invoice Management System for Local Shop is a web-based application develope
       define('DB_SERVER', 'localhost');
       define('DB_USERNAME', 'root');
       define('DB_PASSWORD', '');
-      define('DB_NAME', 'local_shop');
+      define('DB_NAME', 'invoice_system');
       ```
 
 4. **Start Local Server:**
@@ -62,6 +63,9 @@ The Invoice Management System for Local Shop is a web-based application develope
 
 4. **Track Sales:**
    - 📊 View sales history and generate sales reports.
+
+5. **Add Products:**
+   - 🛒 Choose between adding products manually or selecting from inventory. When selecting from inventory, details of the selected products will automatically be filled in the "Product Information" section.
 
 ## Contributing
 
