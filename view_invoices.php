@@ -1,9 +1,9 @@
-<?php
+<?php 
 // Connect to the database
 include 'db_connection.php'; // Include your database connection file
 
 // Fetch invoices from the database
-$sql = "SELECT * FROM invoices ORDER BY created_at DESC";
+$sql = "SELECT * FROM invoices ORDER BY created_at ASC";
 $result = $conn->query($sql);
 ?>
 
@@ -29,10 +29,18 @@ $result = $conn->query($sql);
             background-color: #ddd;
         }
         h2 {
-            margin-bottom: 0; /* Ensures no space below the title */
+            margin-bottom: 0;
         }
         .table-container {
-            clear: both; /* Ensures the table appears below the title */
+            clear: both;
+        }
+        .btn-success {
+            color: #fff;
+            background-color: #28a745;
+            border-color: #28a745;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
         }
     </style>
     <meta charset="UTF-8">
@@ -42,8 +50,8 @@ $result = $conn->query($sql);
 </head>
 <body>
     <div class="container">
-        <h2>Invoices</h2> <!-- Title with no extra spacing below -->
-        <div class="table-container"> <!-- Wrapper to ensure the table is below -->
+        <h2>Invoices<br></h2>
+        <div class="table-container">
             <table class="table table-bordered table-striped">
                 <thead class="thead-dark">
                     <tr>
@@ -69,8 +77,9 @@ $result = $conn->query($sql);
                                 <td><?php echo htmlspecialchars($row['invoice_status']); ?></td>
                                 <td><?php echo $row['total_amount']; ?></td>
                                 <td>
+                                    <!-- Properly structured download button -->
                                     <a href="download_invoice.php?file=<?php echo urlencode($row['pdf_path']); ?>" class="btn btn-success">
-                                        <i class="fas fa-download"></i> Download
+                                        Download
                                     </a>
                                 </td>
                             </tr>

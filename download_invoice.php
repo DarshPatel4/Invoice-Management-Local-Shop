@@ -1,16 +1,18 @@
 <?php
-if (isset($_GET['file'])) {
-    $file = urldecode($_GET['file']); // Decode URL-encoded file path
+// Check if the 'file' parameter is set
+if (isset($_GET['file']) && !empty($_GET['file'])) {
+    // Sanitize the input to prevent file path attacks
+    $file = basename($_GET['file']);
+    
+    // Set the file path
+    $filePath = 'invoices/' . $file;
 
-    // Sanitize the input to avoid path traversal attacks
-    $file = basename($file);
-
-    $filePath = 'invoices/' . $file; // Adjust path if necessary
-
+    // Check if the file exists
     if (file_exists($filePath)) {
+        // Set headers for file download
         header('Content-Description: File Transfer');
         header('Content-Type: application/pdf');
-        header('Content-Disposition: attachment; filename="' . basename($filePath) . '"');
+        header('Content-Disposition: attachment; filename="'.basename($filePath).'"');
         header('Expires: 0');
         header('Cache-Control: must-revalidate');
         header('Pragma: public');
@@ -18,9 +20,9 @@ if (isset($_GET['file'])) {
         readfile($filePath);
         exit;
     } else {
-        echo "File not found.";
+        echo "Error: File does not exist.";
     }
 } else {
-    echo "Invalid request.";
+    echo "Error: No file specified.";
 }
 ?>

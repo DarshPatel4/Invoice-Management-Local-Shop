@@ -47,6 +47,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                             <a href="index.php?page=add_customer">Add Customer</a> <!-- Fixed missing page parameter -->
                         </div>
                     </li>
+                    <li>
+                        <a href="index.php?page=sales_report" id="sales-report-link"><i class="fas fa-chart-line"></i> Sales Report</a></li>
                     <li class="dropdown">
                         <a href="javascript:void(0)" class="dropbtn"><i class="fas fa-user-cog"></i> System Users <i class="fas fa-caret-down"></i></a>
                         <div class="dropdown-content">
@@ -81,7 +83,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
                     include 'customer.php';
                 } elseif ($page == 'add_customer') {
                     include 'add_customer.php';
-                } elseif ($page == 'system_users') {
+                } elseif ($page == 'sales_report') {
+                    include 'sales_report.php';
+                }elseif ($page == 'system_users') {
                     include 'system_users.php';
                 } elseif ($page == 'add_system_user') {
                     include 'add_system_user.php';
